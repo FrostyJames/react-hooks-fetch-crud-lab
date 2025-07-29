@@ -7,7 +7,7 @@ function QuestionForm({ questions, setQuestions }) {
     answer2: "",
     answer3: "",
     answer4: "",
-    correctIndex: 0,
+    correctIndex: "0", // store as string to match <select> behavior
   });
 
   function handleChange(event) {
@@ -15,7 +15,7 @@ function QuestionForm({ questions, setQuestions }) {
 
     setFormData({
       ...formData,
-      [name]: name === "correctIndex" ? parseInt(value) : value,
+      [name]: value, // keep correctIndex as string
     });
   }
 
@@ -30,7 +30,7 @@ function QuestionForm({ questions, setQuestions }) {
         formData.answer3,
         formData.answer4,
       ],
-      correctIndex: formData.correctIndex,
+      correctIndex: parseInt(formData.correctIndex), // convert to number here
     };
 
     fetch("http://localhost:4000/questions", {
@@ -47,7 +47,7 @@ function QuestionForm({ questions, setQuestions }) {
           answer2: "",
           answer3: "",
           answer4: "",
-          correctIndex: 0,
+          correctIndex: "0",
         });
       });
   }
